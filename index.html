@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HyCo — Run. Lift. Perform. | Adaptive marathon &amp; lifting coach</title>
+<meta name="description" content="HyCo builds one adaptive plan for running and lifting — periodised together and reshaped by your real recovery. Coach-grade training science, without a coach's price." />
+<meta property="og:title" content="HyCo — Run. Lift. Perform." />
+<meta property="og:description" content="One adaptive plan for marathoners who lift. Periodised together, reshaped by your real recovery." />
+<meta property="og:type" content="website" />
+<meta name="theme-color" content="#0E1014" />
+<meta name="color-scheme" content="dark" />
+<style>
+  :root{
+    --bg:#0E1014; --surface:#171A21; --surface2:#1F232C; --line:#2A2F3A; --line2:#363c49;
+    --text:#ECEDF1; --dim:#9AA1AE; --faint:#646B79; --body:#C3CAD5;
+    --ember:#FF5A3C; --emberSoft:#FF7A60; --teal:#2DD4BF; --amber:#F5A623; --sky:#5BC8FF; --violet:#8B7BFF; --rose:#F25C7A;
+    --maxw:1120px;
+    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;background:#0E1014;color-scheme:dark}
+  body{background:#0E1014;color:var(--text);font-family:var(--font);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .eyebrow{font-size:10.5px;letter-spacing:1.6px;text-transform:uppercase;font-weight:700;color:var(--faint)}
+  ::selection{background:var(--ember);color:#1a0a05}
+
+  /* nav */
+  .nav{position:sticky;top:0;z-index:50;background:rgba(14,16,20,.78);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav .row{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:18px;letter-spacing:-.02em}
+  .brand .mark{width:27px;height:27px;flex:0 0 auto;border-radius:7px}
+  .nav-cta{font-size:13px;font-weight:700;padding:9px 15px;border-radius:10px;background:var(--ember);color:#190a05;transition:transform .15s,background .15s}
+  .nav-cta:hover{background:var(--emberSoft);transform:translateY(-1px)}
+  .nav-cta:focus-visible,a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
+
+  /* hero */
+  .hero{position:relative;padding:70px 0 64px;overflow:hidden;background:#0E1014}
+  .hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+  .hero-bg .glow{position:absolute;border-radius:50%;filter:blur(110px)}
+  .g1{width:560px;height:560px;background:rgba(255,90,60,.16);top:-200px;left:-160px}
+  .g2{width:460px;height:460px;background:rgba(45,212,191,.08);bottom:-220px;right:-140px}
+  .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+  .pill{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:700;color:var(--dim);
+    background:rgba(255,90,60,.10);border:1px solid rgba(255,90,60,.34);border-radius:999px;padding:5px 12px;margin-bottom:22px}
+  .pill .dot{width:6px;height:6px;border-radius:50%;background:var(--ember);box-shadow:0 0 10px var(--ember)}
+  h1{font-size:clamp(38px,6.2vw,60px);font-weight:800;letter-spacing:-.03em;line-height:1.04}
+  h1 .accent{color:var(--ember)}
+  .sub{margin-top:20px;font-size:clamp(16px,2vw,18.5px);color:var(--body);max-width:520px}
+  .sub b{color:var(--text);font-weight:600}
+
+  /* waitlist */
+  .wl{margin-top:28px;max-width:460px}
+  .wl-form{display:flex;gap:10px;flex-wrap:wrap}
+  .wl input[type=email]{flex:1;min-width:210px;background:var(--surface2);border:1px solid var(--line2);color:var(--text);
+    font-size:15px;font-family:inherit;padding:13px 15px;border-radius:11px;outline:none;transition:border-color .15s}
+  .wl input[type=email]:focus{border-color:var(--ember)}
+  .wl input::placeholder{color:var(--faint)}
+  .btn{cursor:pointer;border:none;font-family:inherit;font-weight:700;font-size:15px;padding:13px 22px;border-radius:11px;
+    background:var(--ember);color:#190a05;transition:transform .15s,background .15s;white-space:nowrap}
+  .btn:hover{background:var(--emberSoft);transform:translateY(-1px)}
+  .btn:active{transform:translateY(0)}
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+  .wl-note{margin-top:12px;font-size:12px;color:var(--faint);line-height:1.5}
+  .wl-msg{margin-top:13px;font-size:14px;font-weight:600;display:none}
+  .wl-msg.ok{display:block;color:var(--teal)}
+  .wl-msg.err{display:block;color:var(--amber)}
+  .wl-consent{margin-top:11px;font-size:11.5px;color:var(--faint)}
+  .wl-consent a{color:var(--dim);text-decoration:underline}
+
+  /* app preview card (mirrors the app UI) */
+  .preview{display:flex;flex-direction:column;gap:12px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px}
+  .pv-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+  .pv-title{font-size:19px;font-weight:800;letter-spacing:-.01em;margin-top:3px}
+  .pv-sub{color:var(--dim);font-size:12.5px;margin-top:3px}
+  .tagpill{font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap}
+  .pv-stats{display:flex;gap:18px;margin-top:14px;flex-wrap:wrap}
+  .stat .lab{font-size:10px;letter-spacing:1px;text-transform:uppercase;font-weight:700;color:var(--faint)}
+  .stat .val{font-size:21px;font-weight:800;font-variant-numeric:tabular-nums;margin-top:2px}
+  .stat .val small{font-size:11px;color:var(--faint);font-weight:600}
+  .pv-row{display:flex;justify-content:space-between;align-items:center;padding:9px 11px;background:var(--surface2);border-radius:8px}
+  .pv-row .l{font-size:12.5px;font-weight:700}.pv-row .l small{display:block;color:var(--faint);font-size:10.5px;font-weight:500}
+  .pv-row .r{font-size:12.5px;font-weight:800;font-variant-numeric:tabular-nums}
+  .ring-wrap{display:flex;align-items:center;gap:14px}
+  .ring-txt{display:flex;flex-direction:column}
+  .ring-txt .big{font-size:24px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+  .ring-txt .cap{font-size:11px;color:var(--dim);font-weight:600;margin-top:3px}
+
+  /* sections */
+  .section{padding:60px 0;border-top:1px solid var(--line);background:#0E1014}
+  .section h2{font-size:clamp(25px,3.6vw,38px);font-weight:800;letter-spacing:-.025em;margin-top:11px}
+  .lede{color:var(--body);font-size:16px;margin-top:12px;max-width:600px}
+
+  .thesis{padding:62px 0;border-top:1px solid var(--line);background:#0E1014}
+  .thesis .big{font-size:clamp(23px,3.6vw,34px);font-weight:800;letter-spacing:-.02em;max-width:820px;line-height:1.25}
+  .thesis .big .muted{color:var(--faint)}
+  .thesis .resolve{margin-top:14px;font-size:clamp(17px,2.4vw,22px);font-weight:700;color:var(--text)}
+  .thesis .resolve .e{color:var(--ember)}
+
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:32px}
+  .feat{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px;transition:border-color .2s,transform .2s}
+  .feat:hover{border-color:var(--line2);transform:translateY(-2px)}
+  .feat .ic{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;margin-bottom:15px}
+  .feat h3{font-size:17.5px;font-weight:800;letter-spacing:-.01em;margin-bottom:7px}
+  .feat p{font-size:14.5px;color:var(--body)}
+
+  /* inside list */
+  .inside{margin-top:30px;display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+  .ins-row{display:flex;gap:11px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:13px 15px}
+  .ins-row .d{width:8px;height:8px;border-radius:50%;flex:0 0 auto;margin-top:6px}
+  .ins-row .t{font-size:14px;color:var(--body)}.ins-row .t b{color:var(--text);font-weight:600}
+
+  /* pricing */
+  .price-card{margin-top:30px;background:linear-gradient(165deg,rgba(255,90,60,.10),var(--surface));
+    border:1px solid rgba(255,90,60,.32);border-radius:18px;padding:32px;max-width:540px}
+  .price-card .tag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;
+    color:var(--ember);background:rgba(255,90,60,.13);border:1px solid rgba(255,90,60,.3);padding:5px 11px;border-radius:999px}
+  .price-row{display:flex;align-items:baseline;gap:10px;margin:18px 0 2px}
+  .price-row .amt{font-size:46px;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+  .price-row .per{color:var(--dim);font-size:15px}
+  .price-row .strike{color:var(--faint);font-size:15px;text-decoration:line-through;margin-left:4px}
+  .price-card .alt{color:var(--dim);font-size:14px}
+  .price-list{margin:18px 0 0;list-style:none;display:flex;flex-direction:column;gap:10px}
+  .price-list li{display:flex;gap:11px;align-items:flex-start;font-size:14.5px;color:var(--body)}
+  .price-list svg{flex:0 0 auto;margin-top:3px}
+
+  /* final cta */
+  .cta-final{padding:78px 0;border-top:1px solid var(--line);text-align:center;background:#0E1014}
+  .cta-final h2{font-size:clamp(28px,4.4vw,42px);font-weight:800;letter-spacing:-.025em}
+  .cta-final p{color:var(--body);margin-top:13px;font-size:16px}
+  .cta-final .wl{margin:28px auto 0}.cta-final .wl-form{justify-content:center}
+
+  /* faq */
+  details{border-top:1px solid var(--line);padding:18px 2px}
+  details:last-of-type{border-bottom:1px solid var(--line)}
+  summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;font-weight:700;font-size:16.5px;letter-spacing:-.01em}
+  summary::-webkit-details-marker{display:none}
+  .plus{flex:0 0 auto;width:20px;height:20px;position:relative}
+  .plus::before,.plus::after{content:"";position:absolute;background:var(--ember);border-radius:2px}
+  .plus::before{left:0;top:9px;width:20px;height:2px}
+  .plus::after{left:9px;top:0;width:2px;height:20px;transition:opacity .2s}
+  details[open] .plus::after{opacity:0}
+  details p{color:var(--body);font-size:14.5px;margin-top:12px;max-width:780px}
+  details p a{color:var(--ember)}
+
+  /* footer */
+  footer{border-top:1px solid var(--line);padding:44px 0 40px;background:#0E1014}
+  .foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px}
+  .foot-brand .tag{color:var(--faint);font-size:13.5px;margin-top:10px;max-width:300px}
+  .foot-links{display:flex;flex-wrap:wrap;gap:22px;font-size:14px;color:var(--dim)}
+  .foot-links a:hover{color:var(--text)}
+  .foot-bottom{margin-top:32px;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px;color:var(--faint)}
+
+  @media(max-width:860px){.hero-grid{grid-template-columns:1fr;gap:36px}.preview{order:2}}
+  @media(max-width:600px){.grid,.inside{grid-template-columns:1fr}.foot-top{flex-direction:column}}
+  @keyframes rise{from{opacity:0;transform:translateY(13px)}to{opacity:1;transform:none}}
+  .rise{animation:rise .65s cubic-bezier(.2,.7,.2,1) both}
+  .rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.1s}.rise.d3{animation-delay:.15s}.rise.d4{animation-delay:.2s}
+  @media(prefers-reduced-motion:reduce){.rise{animation:none}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap row">
+    <a href="#top" class="brand">
+      <svg class="mark" viewBox="0 0 36 36" fill="none" aria-hidden="true"><rect width="36" height="36" rx="9" fill="#FF5A3C"/><path d="M8 24.5 L15.5 15.5 L20.5 20 L28 10.5" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="28" cy="10.5" r="2.5" fill="#fff"/></svg>
+      HyCo
+    </a>
+    <a href="#waitlist" class="nav-cta">Join the waitlist</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-bg"><div class="glow g1"></div><div class="glow g2"></div></div>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="pill rise"><span class="dot"></span> Adaptive marathon &amp; lifting</span>
+      <h1 class="rise d1">Run faster.<br/>Stay strong.<br/><span class="accent">One adaptive plan.</span></h1>
+      <p class="sub rise d2">HyCo builds <b>one adaptive plan for running and lifting</b> — periodised together and reshaped by your real recovery. Coach-grade training science, without a coach's price.</p>
+      <div class="wl rise d3" id="waitlist">
+        <form class="wl-form" id="wlForm" novalidate>
+          <input type="email" id="wlEmail" name="email" placeholder="you@email.com" autocomplete="email" required aria-label="Email address" />
+          <input type="text" class="hp" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <button class="btn" type="submit" id="wlBtn">Join the waitlist</button>
+        </form>
+        <div class="wl-note">iOS first · 14-day free trial at launch · Waitlist members lock in founder pricing. No spam — just launch news.</div>
+        <div class="wl-consent">By joining you agree to our <a href="privacy.html">Privacy Policy</a>.</div>
+        <div class="wl-msg" id="wlMsg" role="status" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <!-- app-style preview -->
+    <div class="preview rise d4" aria-hidden="true">
+      <div class="card">
+        <div class="pv-head">
+          <div>
+            <div class="eyebrow">Today · Week 9 · Build</div>
+            <div class="pv-title">Threshold intervals</div>
+            <div class="pv-sub">5 × 6 min @ threshold · 60s float</div>
+          </div>
+          <span class="tagpill" style="color:#FF5A3C;background:rgba(255,90,60,.14);border:1px solid rgba(255,90,60,.4)">KEY</span>
+        </div>
+        <div class="pv-stats">
+          <div class="stat"><div class="lab">Distance</div><div class="val">14<small> km</small></div></div>
+          <div class="stat"><div class="lab">Load</div><div class="val" style="color:#FF5A3C">165</div></div>
+          <div class="stat"><div class="lab">Target</div><div class="val" style="font-size:17px">3:58<small> /km</small></div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="ring-wrap">
+          <svg width="58" height="58" viewBox="0 0 58 58">
+            <circle cx="29" cy="29" r="24" stroke="#2A2F3A" stroke-width="6" fill="none"/>
+            <circle cx="29" cy="29" r="24" stroke="#2DD4BF" stroke-width="6" fill="none" stroke-linecap="round"
+              stroke-dasharray="150.8" stroke-dashoffset="42" transform="rotate(-90 29 29)"/>
+          </svg>
+          <div class="ring-txt"><div class="big">72</div><div class="cap" style="color:#2DD4BF">Recovery · normal</div></div>
+          <div class="stat" style="margin-left:auto"><div class="lab">Form (TSB)</div><div class="val" style="color:#5BC8FF">+4</div></div>
+        </div>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;gap:7px">
+        <div class="eyebrow" style="margin-bottom:3px">This week</div>
+        <div class="pv-row"><div class="l">Long run<small>Sunday</small></div><div class="r">32 km</div></div>
+        <div class="pv-row"><div class="l">Strength B<small>RDL + Overhead Press</small></div><div class="r" style="color:#8B7BFF">5 lifts</div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="thesis">
+  <div class="wrap">
+    <p class="big">Most training apps make you choose: <span class="muted">a running plan, or a lifting plan.</span></p>
+    <p class="resolve">HyCo refuses the trade-off — and coaches both <span class="e">as one.</span></p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <span class="eyebrow" style="color:var(--ember)">Why HyCo</span>
+    <h2>Built for the runner who lifts.</h2>
+    <div class="grid">
+      <div class="feat">
+        <div class="ic" style="background:rgba(255,90,60,.14)"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#FF5A3C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h4l2-7 4 14 2-7h4"/></svg></div>
+        <h3>One plan, both disciplines</h3>
+        <p>Your runs and your lifts in a single periodised plan — not two apps fighting over the week.</p>
+      </div>
+      <div class="feat">
+        <div class="ic" style="background:rgba(45,212,191,.14)"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#2DD4BF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-5 4 4 8-9"/><path d="M21 3v6h-6"/></svg></div>
+        <h3>Periodised together</h3>
+        <p>Base, build, peak and a distance-scaled taper — strength that ramps when it should and eases off near your race.</p>
+      </div>
+      <div class="feat">
+        <div class="ic" style="background:rgba(91,200,255,.14)"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#5BC8FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+        <h3>Reacts to your real recovery</h3>
+        <p>Sleep, HRV and training load drive automatic deloads before you dig a hole — and double-threshold work when you're ready.</p>
+      </div>
+      <div class="feat">
+        <div class="ic" style="background:rgba(245,166,35,.14)"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7a6 6 0 0 1-12 0Z"/><path d="M6 5H3a3 3 0 0 0 3 3M18 5h3a3 3 0 0 1-3 3M9 22h6M12 15v7"/></svg></div>
+        <h3>Coach-grade, not coach-priced</h3>
+        <p>Race prediction, pacing, fuelling and a full strength engine — the depth of a coach, from £8.99/month.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <span class="eyebrow" style="color:var(--ember)">What's inside</span>
+    <h2>Coaching depth, not a template.</h2>
+    <p class="lede">The science serious athletes look for, working quietly in the background.</p>
+    <div class="inside">
+      <div class="ins-row"><span class="d" style="background:#FF5A3C"></span><div class="t"><b>Adaptive 52-week periodisation</b> across base, build, peak and taper</div></div>
+      <div class="ins-row"><span class="d" style="background:#2DD4BF"></span><div class="t">Marathon, half &amp; hybrid plans with real long-run progression</div></div>
+      <div class="ins-row"><span class="d" style="background:#5BC8FF"></span><div class="t">Polarised, pyramidal, threshold &amp; <b>Norwegian double-threshold</b></div></div>
+      <div class="ins-row"><span class="d" style="background:#2DD4BF"></span><div class="t"><b>Recovery score</b> with fatigue-driven deloads</div></div>
+      <div class="ins-row"><span class="d" style="background:#8B7BFF"></span><div class="t">Training load — CTL / ATL / TSB readiness</div></div>
+      <div class="ins-row"><span class="d" style="background:#F5A623"></span><div class="t">Pace &amp; heart-rate zones from your fitness</div></div>
+      <div class="ins-row"><span class="d" style="background:#FF5A3C"></span><div class="t">Race prediction, pacing splits &amp; fuelling</div></div>
+      <div class="ins-row"><span class="d" style="background:#F25C7A"></span><div class="t">Carb-loading &amp; muscle-safe race-weight targeting</div></div>
+      <div class="ins-row"><span class="d" style="background:#8B7BFF"></span><div class="t"><b>A/B/C strength rotation</b> with progressive overload</div></div>
+      <div class="ins-row"><span class="d" style="background:#2DD4BF"></span><div class="t">Load-reactive nutrition &amp; macros</div></div>
+      <div class="ins-row"><span class="d" style="background:#5BC8FF"></span><div class="t">Shoe-mileage tracking</div></div>
+      <div class="ins-row"><span class="d" style="background:#F5A623"></span><div class="t">Metric &amp; imperial units</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <span class="eyebrow" style="color:var(--ember)">Founder access</span>
+    <h2>Lock in founder pricing.</h2>
+    <div class="price-card">
+      <span class="tag">Waitlist members only</span>
+      <div class="price-row"><span class="amt">£59</span><span class="per">/ year</span><span class="strike">£79</span></div>
+      <div class="alt">or £8.99/month · 14-day free trial at launch</div>
+      <ul class="price-list">
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2DD4BF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Founder price held for as long as you stay subscribed</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2DD4BF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Early access before public launch</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2DD4BF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> A direct line to shape the roadmap</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="wrap">
+    <h2>Be first in.</h2>
+    <p>Early access and founder pricing for waitlist members. iOS first.</p>
+    <div class="wl">
+      <form class="wl-form" id="wlForm2" novalidate>
+        <input type="email" id="wlEmail2" name="email" placeholder="you@email.com" autocomplete="email" required aria-label="Email address" />
+        <input type="text" class="hp" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <button class="btn" type="submit">Join the waitlist</button>
+      </form>
+      <div class="wl-consent">By joining you agree to our <a href="privacy.html">Privacy Policy</a>.</div>
+      <div class="wl-msg" id="wlMsg2" role="status" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <span class="eyebrow" style="color:var(--ember)">FAQ</span>
+    <h2 style="margin-bottom:24px">Frequently asked</h2>
+    <details><summary>What is HyCo?<span class="plus"></span></summary><p>HyCo is an adaptive coaching app for athletes who both run and lift. It builds one plan that periodises your endurance and strength training together, then reshapes it around your real recovery, your logged sessions and your goal race.</p></details>
+    <details><summary>Who is it for?<span class="plus"></span></summary><p>Marathon, half-marathon and hybrid athletes who strength-train as part of their week — runners who lift, and lifters who want to race well without losing the gym. It's built for intermediate-to-advanced athletes who want coaching depth, not a fixed PDF.</p></details>
+    <details><summary>When does it launch, and on what?<span class="plus"></span></summary><p>HyCo is coming to iOS first. Waitlist members get early access ahead of public launch, plus founder pricing. Join the list and we'll email you the moment it's ready.</p></details>
+    <details><summary>Do I need a Garmin or Apple Watch?<span class="plus"></span></summary><p>No. HyCo works with manual logging out of the box. Automatic sync from wearables (Apple Health, Garmin and more) is on the roadmap so your runs and recovery flow in on their own.</p></details>
+    <details><summary>How much will it cost?<span class="plus"></span></summary><p>£8.99/month or £79/year, with a 14-day free trial. Waitlist members lock in founder pricing of £59/year for as long as they stay subscribed.</p></details>
+    <details><summary>Is HyCo a replacement for a coach or doctor?<span class="plus"></span></summary><p>HyCo gives training guidance, not medical advice. It's a powerful planning and adaptation tool, but it doesn't replace professional medical care. Please read our <a href="disclaimer.html">health &amp; fitness disclaimer</a> and speak to a doctor before starting a new programme.</p></details>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="brand">
+          <svg class="mark" viewBox="0 0 36 36" fill="none" aria-hidden="true"><rect width="36" height="36" rx="9" fill="#FF5A3C"/><path d="M8 24.5 L15.5 15.5 L20.5 20 L28 10.5" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="28" cy="10.5" r="2.5" fill="#fff"/></svg>
+          HyCo
+        </div>
+        <p class="tag">Run. Lift. Perform. The adaptive coach for athletes who do both.</p>
+      </div>
+      <nav class="foot-links" aria-label="Legal">
+        <a href="#waitlist">Waitlist</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="disclaimer.html">Disclaimer</a>
+        <a href="mailto:carterm20@icloud.com">Contact</a>
+      </nav>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="yr"></span> HyCo · Carter Studios. All rights reserved.</span>
+      <span>Built for marathoners who lift.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("yr").textContent = new Date().getFullYear();
+  /* ============================================================
+     WAITLIST CONFIG — fill these, then deploy. Uses your existing
+     Supabase project (free). See README.md for the one-time table
+     + policy SQL. Prefer no database? set mode:"formspree".
+     ============================================================ */
+  const WAITLIST = {
+    mode: "supabase",
+    supabaseUrl:  "https://YOUR-PROJECT.supabase.co",
+    supabaseAnonKey: "YOUR-PUBLISHABLE-ANON-KEY",
+    formspreeId:  "YOUR-FORM-ID"
+  };
+  function validEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+  async function submitEmail(email){
+    if (WAITLIST.mode === "formspree"){
+      const r = await fetch("https://formspree.io/f/" + WAITLIST.formspreeId, {
+        method:"POST", headers:{ "Accept":"application/json","Content-Type":"application/json" },
+        body: JSON.stringify({ email }) });
+      if(!r.ok) throw new Error("formspree"); return;
+    }
+    const r = await fetch(WAITLIST.supabaseUrl + "/rest/v1/waitlist", {
+      method:"POST",
+      headers:{ "apikey":WAITLIST.supabaseAnonKey, "Authorization":"Bearer "+WAITLIST.supabaseAnonKey,
+        "Content-Type":"application/json", "Prefer":"return=minimal" },
+      body: JSON.stringify({ email, source:"landing" }) });
+    if(!r.ok && r.status !== 409) throw new Error("supabase " + r.status);
+  }
+  function wire(formId, msgId, emailId){
+    const form = document.getElementById(formId); if(!form) return;
+    const msg = document.getElementById(msgId), input = document.getElementById(emailId);
+    form.addEventListener("submit", async (e)=>{
+      e.preventDefault();
+      if(form.querySelector('input[name=company]').value) return;
+      const email = (input.value||"").trim(); msg.className = "wl-msg";
+      if(!validEmail(email)){ msg.className="wl-msg err"; msg.textContent="Please enter a valid email address."; return; }
+      const btn = form.querySelector("button"); const label = btn.textContent; btn.disabled = true; btn.textContent = "Joining…";
+      try{ await submitEmail(email); msg.className="wl-msg ok"; msg.textContent="You're on the list — we'll be in touch."; form.reset(); }
+      catch(err){ msg.className="wl-msg err"; msg.textContent="Something went wrong — please try again, or email carterm20@icloud.com."; console.error(err); }
+      finally{ btn.disabled=false; btn.textContent=label; }
+    });
+  }
+  wire("wlForm","wlMsg","wlEmail"); wire("wlForm2","wlMsg2","wlEmail2");
+</script>
+</body>
+</html>
