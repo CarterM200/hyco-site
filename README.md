@@ -77,4 +77,5 @@ Or drag the folder onto **netlify.com/drop** for an instant URL.
 - `privacy.html` — Privacy Policy (UK GDPR)
 - `terms.html` — Terms of Service
 - `disclaimer.html` — Health & Fitness Disclaimer
+- `support.html` — Help & support (use as your App Store Support URL: https://hyco.coach/support.html)
 - update the contact email (`hello@hyco.app`) across all pages to your real address

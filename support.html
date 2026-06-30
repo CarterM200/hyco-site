@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Support — HyCo</title>
+<meta name="robots" content="noindex" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{--ink:#0E1014;--ember:#FF5A3C;--text:#1a2129;--dim:#516072;--line:#e7ebf0;--bg:#fbfcfe}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:"Inter",system-ui,sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--ember);text-decoration:none}a:hover{text-decoration:underline}
+  .topbar{background:var(--ink);position:sticky;top:0;z-index:10}
+  .topbar .row{max-width:820px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:9px;font-family:"Sora";font-weight:800;color:#eef3f8;font-size:18px;letter-spacing:-.03em}
+  .brand svg{width:25px;height:25px;border-radius:6px}
+  .topbar a.back{color:#9fb0bf;font-size:13.5px;font-weight:600}.topbar a.back:hover{color:#fff;text-decoration:none}
+  .doc{max-width:820px;margin:0 auto;padding:48px 22px 90px}
+  h1{font-family:"Sora";font-weight:800;font-size:34px;letter-spacing:-.02em;line-height:1.1}
+  .meta{color:var(--dim);font-size:14px;margin-top:12px}
+  .intro{margin-top:22px;font-size:16px;color:#33414f}
+  h2{font-family:"Sora";font-weight:700;font-size:21px;margin:36px 0 12px;letter-spacing:-.01em}
+  p{margin:11px 0;font-size:15.5px;color:#2a3742}
+  .contact{background:#f4f6f9;border:1px solid var(--line);border-left:3px solid var(--ember);border-radius:8px;padding:16px 18px;margin:18px 0;font-size:15px}
+  .btn{display:inline-block;background:var(--ember);color:#fff;font-weight:700;font-size:15px;padding:11px 20px;border-radius:9px;margin-top:6px}
+  .btn:hover{text-decoration:none;opacity:.92}
+  details{border-top:1px solid var(--line);padding:2px 0}
+  details summary{cursor:pointer;list-style:none;padding:16px 2px;font-weight:600;font-size:16px;color:var(--text);display:flex;justify-content:space-between;align-items:center}
+  details summary::-webkit-details-marker{display:none}
+  details summary::after{content:"+";color:var(--dim);font-weight:400;font-size:22px;line-height:1}
+  details[open] summary::after{content:"\2013"}
+  details[open] summary{color:var(--ember)}
+  details .body{padding:0 2px 18px;font-size:15.5px;color:#2a3742}
+  footer{border-top:1px solid var(--line);max-width:820px;margin:0 auto;padding:24px 22px 60px;font-size:13px;color:var(--dim)}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="row">
+  <a href="index.html" class="brand">
+    <svg viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="9" fill="#FF5A3C"/><path d="M8 24.5 L15.5 15.5 L20.5 20 L28 10.5" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="28" cy="10.5" r="2.5" fill="#fff"/></svg>
+    HyCo
+  </a>
+  <a class="back" href="index.html">← Back to site</a>
+</div></div>
+
+<main class="doc">
+
+  <h1>Help &amp; support</h1>
+  <p class="meta">Run. Lift. Perform. — and if anything gets in the way, we'll help you sort it.</p>
+
+  <div class="contact">
+    <p style="margin-top:0"><b>The fastest way to reach us is email.</b> Tell us what's happening, your device and iOS version, and a screenshot if you have one — it helps us help you quickly. We aim to reply within 2 business days.</p>
+    <a class="btn" href="mailto:hello@hyco.coach?subject=HyCo%20support">Email hello@hyco.coach</a>
+  </div>
+
+  <h2>Frequently asked</h2>
+
+  <details>
+    <summary>How do I connect Apple Health?</summary>
+    <div class="body">When you first open a screen that uses health data, HyCo asks permission to read your workouts, heart rate, distance and VO&#8322;max. If you skipped it, go to iPhone <b>Settings → Privacy &amp; Security → Health → HyCo</b> and enable the data types you're happy to share. HyCo works fully without Health access too — you can enter everything manually.</div>
+  </details>
+
+  <details>
+    <summary>My paces or recovery look off — how are they calculated?</summary>
+    <div class="body">Your training paces are anchored to a rolling average of your recent VO&#8322;max readings (and fall back to your training volume and load if you have none yet). Recovery blends sleep, resting heart rate, HRV and accumulated training load. Both sharpen as you log more sessions, so a day or two of data makes a real difference.</div>
+  </details>
+
+  <details>
+    <summary>How do I log a workout?</summary>
+    <div class="body">From the dashboard or the Training tab, tap a session to open it, then tap <b>Log run</b> or <b>Log strength session</b>. Interval sessions pre-fill a row per rep with your target splits — adjust to what you actually ran and save.</div>
+  </details>
+
+  <details>
+    <summary>How do I manage or cancel my subscription?</summary>
+    <div class="body">HyCo subscriptions are handled by the App Store. On your iPhone open <b>Settings → [your name] → Subscriptions</b>, choose HyCo, and you can change or cancel there. Your 7-day free trial and renewal terms are shown before you confirm any purchase.</div>
+  </details>
+
+  <details>
+    <summary>How do I delete my account and data?</summary>
+    <div class="body">You can permanently delete your account and associated data from inside the app, under <b>Profile → Account → Delete account</b>. This removes your personal data within 30 days, except limited records we must keep for legal or tax reasons. You can also email <a href="mailto:hello@hyco.coach?subject=Account%20deletion%20request">hello@hyco.coach</a> to request deletion. See our <a href="privacy.html">Privacy Policy</a> for detail.</div>
+  </details>
+
+  <details>
+    <summary>How do I export my data?</summary>
+    <div class="body">You have the right to a copy of your data. Use the in-app export tools under Profile, or email <a href="mailto:hello@hyco.coach?subject=Data%20export%20request">hello@hyco.coach</a> and we'll provide it within one month, as required under UK GDPR.</div>
+  </details>
+
+  <details>
+    <summary>Is HyCo a substitute for a coach or doctor?</summary>
+    <div class="body">No. HyCo provides training and nutrition guidance for healthy adults — it isn't medical advice and doesn't replace professional care. Please read our <a href="disclaimer.html">Health &amp; Fitness Disclaimer</a> and speak to a doctor before starting a new programme.</div>
+  </details>
+
+  <h2>Still stuck?</h2>
+  <p>Email <a href="mailto:hello@hyco.coach?subject=HyCo%20support">hello@hyco.coach</a> with as much detail as you can and we'll get back to you.</p>
+
+</main>
+<footer>© 2026 Matthew Carter t/a HyCo · <a href="index.html">Home</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="disclaimer.html">Disclaimer</a></footer>
+</body>
+</html>
